@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p> String 1<P>
+    <input type="text" id="string1" ><br><br>
+    <p> String 2<P>
+    <input type="text" id="string2" ><br><br>
+    <p> string 2 <P>
+    <input type="text" id="string3" ><br><br>
+
+    <button onclick="resetFields()">Reset</button>
+    <button onclick="calculateResult()">Calculate</button>
+
+    <div id="result">Result: </div>
+
+    <script>
+        function resetFields() {
+            document.getElementById('string1').value = '';
+            document.getElementById('string2').value = '';
+            document.getElementById('string3').value = '';
+            document.getElementById('result').innerText = 'Result: ';
+        }
+
+        function calculateResult() {
+            const string1 = document.getElementById('string1').value;
+            const string2 = document.getElementById('string2').value;
+            const string3 = document.getElementById('string3').value;
+
+            if (!string1 || !string2 || !string3) {
+                alert('Enter all strings.');
+                return;
+            }
+
+            const operations = ["length", "substring", "substr", "replace", "replaceAll", "toUpperCase", "toLowerCase"];
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            let result = '';
+
+            if (operation === "length") {
+                result = `Lengths: ${string1.length}, ${string2.length}, ${string3.length}`;
+            } else if (operation === "substring") {
+                result = `Substrings: ${string1.substring(0, 3)}, ${string2.substring(1, 4)}, ${string3.substring(2, 5)}`;
+            } else if (operation === "substr") {
+                result = `Substr: ${string1.substr(0, 3)}, ${string2.substr(1, 4)}, ${string3.substr(2, 5)}`;
+            } else if (operation === "replace") {
+                result = `Replace: ${string1.replace('a', '@')}, ${string2.replace('b', '#')}, ${string3.replace('c', '$')}`;
+            } else if (operation === "replaceAll") {
+                result = `ReplaceAll: ${string1.replaceAll('a', '@')}, ${string2.replaceAll('b', '#')}, ${string3.replaceAll('c', '$')}`;
+            } else if (operation === "toUpperCase") {
+                result = `Uppercase: ${string1.toUpperCase()}, ${string2.toUpperCase()}, ${string3.toUpperCase()}`;
+            } else if (operation === "toLowerCase") {
+                result = `Lowercase: ${string1.toLowerCase()}, ${string2.toLowerCase()}, ${string3.toLowerCase()}`;
+            }
+
+            document.getElementById('result').innerText = `Operation: ${operation}, ${result}`;
+        }
+    </script>
+</body>
+</html>
